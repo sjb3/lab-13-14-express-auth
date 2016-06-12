@@ -38,7 +38,12 @@
 * Create a Basic Auth Middleware for parsing basic auth headers
 * use the `body-parser` express middleware to on `POST` and `PUT` routes
 * use the npm `debug` module to log the functions being executed in your app
-* using the express `Router` create a routes for **signuupp** and **signin**
+* using the express `Router` create an auth router with routes for **signup** and **signin**
+* Your server should depend on the environment variables
+ * `DEBUG` - for turing on logging
+ * `APP_SECRET` - for signing and verify tokens
+ * `PORT` - for setting the port your server will listen on
+ * `MONGODB_URI` - for setting the URI that mongoose will conect to
 
 ## Server Endpoints
 ### `/api/signup`
