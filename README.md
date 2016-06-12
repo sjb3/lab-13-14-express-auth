@@ -1,8 +1,6 @@
 ![cf](https://i.imgur.com/7v5ASc8.png) lab 13 express authorization
 ======
-[![](https://img.shields.io/badge/Issues%3F-Ask%20for%20Help!-55cbe0.svg)](https://github.com/codefellows/seattle-javascript-401n1/issues/new)
-
-[![Build Status](https://travis-ci.org/codefellows-seattle-javascript-401n1/lab-13-14-express-auth.svg?branch=master)](https://travis-ci.org/codefellows-seattle-javascript-401n1/lab-13-14-express-auth)
+[![](https://img.shields.io/badge/Issues%3F-Ask%20for%20Help!-55cbe0.svg)](https://github.com/codefellows/seattle-javascript-401n1/issues/new) [![Build Status](https://travis-ci.org/codefellows-seattle-javascript-401n1/lab-13-14-express-auth.svg?branch=master)](https://travis-ci.org/codefellows-seattle-javascript-401n1/lab-13-14-express-auth)
 
 # To Submit this Assignment
   * fork this repository
