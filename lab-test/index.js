@@ -12,7 +12,7 @@ const exampleSchema = mongoose.Schema({
 const Example = mongoose.model('example', exampleSchema);
 
 exports.createExample = function(data){
-  const salt = bcrypt.genSaltSync(8)
+  const salt = bcrypt.genSaltSync(8);
   data.content = bcrypt.hashSync(data.content, salt);
   return new Example(data).save();
 };
