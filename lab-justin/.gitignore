@@ -1,11 +1,13 @@
 # Created by https://www.gitignore.io/api/osx,linux,node,vim
+db/
+node_modules
+env.sh
+
 
 ### OSX ###
 .DS_Store
 .AppleDouble
 .LSOverride
-db/
-node_modules
 ##
 
 

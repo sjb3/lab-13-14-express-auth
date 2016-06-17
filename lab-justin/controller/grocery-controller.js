@@ -29,7 +29,7 @@ exports.fetchGroceryById = function(groceryId){
     // if(!token) return reject(httpErrors(401, err.message));
     // if(!groceryId) return reject(httpErrors(404, err.message));
 
-    Grocery.findOne({_Id: groceryId})
+    Grocery.findOne({_id: groceryId})
     .then( grocery => resolve(grocery))
     .catch( err => reject(httpErrors(400, err.message)));
   });
@@ -38,7 +38,7 @@ exports.fetchGroceryById = function(groceryId){
 exports.deleteGrocery = function(groceryId){
   // var groceryData;
   return new Promise((resolve, reject) => {
-    Grocery.findOne({_Id: groceryId})
+    Grocery.findOne({_id: groceryId})
     // delete groceryData._id
     .then((grocery) => {
       grocery.remove(grocery)
@@ -59,7 +59,7 @@ exports.updateGrocery = function(groceryId, groceryUpdatedData){
     // if(!groceryId) return reject(httpErrors(404, err.message));
     // if(!groceryData) return reject(httpErrors(400, err.message));
 
-    Grocery.findOne({_Id: groceryId})
+    Grocery.findOne({_id: groceryId})
     .then((grocery) => {
       if(groceryUpdatedData.name){
         grocery.name = groceryUpdatedData.name;
