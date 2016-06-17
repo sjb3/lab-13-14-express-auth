@@ -14,7 +14,7 @@ module.exports = function(req, res, next){
     return next(httpErrors(401, 'requires authorization header'));
   const token = req.headers.authorization.split(' ')[1];
 
-  console.log('TOKEN: ', token);
+  // console.log('TOKEN: ', token);
 
   jwt.verify(token, process.env.APP_SECRET, function(err, decoded){
     if (err)

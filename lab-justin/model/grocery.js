@@ -11,6 +11,7 @@ const grocerySchema = mongoose.Schema({
 
 const Grocery = module.exports =  mongoose.model('grocery', grocerySchema);
 
+debug('grocery');
 Grocery.schema.path('ingredients').validate(function(value){
   if(value.length < 1 ) return false;
   if(value.length > 5 ) return false;

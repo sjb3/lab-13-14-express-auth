@@ -3,6 +3,7 @@
 const debug = require('debug')('authdemo:handle-errors');
 const httpErrors = require('http-errors');
 
+debug('handle-errors');
 module.exports = function(err, req, res, next){
   console.error(err.message);
   if (err.status && err.name){

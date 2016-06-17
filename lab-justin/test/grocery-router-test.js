@@ -86,7 +86,7 @@ describe('testing module grocery-router', function(){
     it('should return "Bad Request"', (done) => {
       request
       .post(`${baseURL}/grocery`)
-      // .send({})
+      .send({})
       .set({//for headers
         Authorization: `Bearer ${this.tempToken}`
       })
@@ -101,12 +101,6 @@ describe('testing module grocery-router', function(){
           done(err);
         }
       });
-      // .catch(err => {
-      //   let res = err.message;
-      //   console.log(res.body);
-      //   expect(res.status).to.equal(400);
-      //   done();
-      // });
     });
 //POST 401
     it('should return "Unauthorized"', (done) => {
@@ -150,7 +144,7 @@ describe('testing module grocery-router', function(){
       .catch(done);
     });
 
-  //GET 200
+//GET 200
     it('should return a token', (done) => {
       debug('test GET /api/grocery');
       request
@@ -190,17 +184,16 @@ describe('testing module grocery-router', function(){
       .then(done)
       .catch( err => {
         let res = err.response;
-        console.log('HIT IT', res.status, res.text);
         expect(res.status).to.eql(404);
         expect(res.text).to.eql('NotFoundError');
         done();
       });
     });
   });
-//PUT
-  describe('testing /api/grocery/:id', function(){
+//DELETE
+  describe('testing DELETE: /api/grocery/:id', function(){
     before((done) => {
-      debug('before GET /api/grocery');
+      debug('before DELETE /api/grocery');
       authController.signup({username: 'slug', password: '1234'})
       .then( token => this.tempToken = token)
       .then(() => done())
@@ -208,7 +201,7 @@ describe('testing module grocery-router', function(){
     });
 
     after((done) => {
-      debug('after GET /api/grocery');
+      debug('after DELETE /api/grocery');
       Promise.all([
         userController.removeAllUsers()
         ,groceryController.removeAllGrocerys()
@@ -216,22 +209,118 @@ describe('testing module grocery-router', function(){
       .then(() => done())
       .catch(done);
     });
-//PUT 200
+
+//DELETE 204 - not working
+    it('should return "no content"', (done) => {
+      request
+      .del(`${baseURL}/grocery`)
+      .auth('slug', '1234')
+      .then((res) => {
+        expect(res.status).to.eql(204);
+        console.log('!!!!!!!', res.body);
+        console.log('~~~~~~~~~~~~', res.text);
+        done();
+      })
+      .catch(done);
+    });
+  //DELETE 404
+    it('should return "not found"', (done) => {
+      request
+      .del(baseURL)
+      .auth('slug', '1234')
+      .then(done)
+      .catch( err => {
+        try{
+          let res = err.response;
+          expect(res.status).to.eql(404);
+          expect(res.text).to.eql('NotFoundError');
+          done();
+        } catch(err) {
+          done(err);
+        }
+      });
+    });
+
+  });
+
+
+  // });
+
+//PUT
+  describe('testing /api/grocery/:id', function(){
+    before((done) => {
+      debug('before PUT /api/grocery');
+      authController.signup({username: 'slug', password: '1234'})
+      .then( token => this.tempToken = token)
+      .then(() => done())
+      .catch(done);
+    });
+
+    after((done) => {
+      debug('after PUT /api/grocery');
+      Promise.all([
+        userController.removeAllUsers()
+        ,groceryController.removeAllGrocerys()
+      ])
+      .then(() => done())
+      .catch(done);
+    });
+//PUT 200~~not working
     // it('should return 200 @ PUT', (done) => {
+    //   debug('test PUT /api/grocery');
     //   request
     //   .put(`${baseURL}/grocery`)
     //   .auth('slug', '1234')
-    //
-    //   // .send({
-    //   //   name: 'yumm bowl'
-    //   //   , ingredients: ['y', 'u', 'm']
-    //   // })
+    //   .send({
+    //     name: 'yumm bowl'
+    //     , ingredients: ['y', 'u', 'm']
+    //   })
     //   .set({//for headers
     //     Authorization: `Bearer ${this.tempToken}`
     //   })
     //   .then( res => {
     //     expect(res.status).to.equal(200);
-    //     console.log(res.text);
+    //     console.log('!!!!@@@@@#####', res.text);
+    //     done();
+    //   }).catch(done);
+    // });
+
+//PUT 401
+    // it('should return 401 @ PUT', (done) => {
+    //   debug('test PUT /api/grocery');
+    //   request
+    //   .put(`${baseURL}/grocery`)
+    //   // .auth('slug', '1234')
+    //   .send({
+    //     name: 'yumm bowl'
+    //     , ingredients: ['y', 'u', 'm']
+    //   })
+    //   // .set({//for headers
+    //   //   Authorization: `Bearer ${this.tempToken}`
+    //   // })
+    //   .then( res => {
+    //     expect(res.status).to.equal(401);
+    //     console.log('!!!!@@@@@#####', res.text);
+    //     done();
+    //   }).catch(done);
+    // });
+
+//PUT 400
+    // it('should return 400 @ PUT', (done) => {
+    //   debug('test PUT /api/grocery');
+    //   request
+    //   .put(`${baseURL}/grocery`)
+    //   // .auth('slug', '1234')
+    //   .send({
+    //     name: 'yumm bowl'
+    //     , ingredients: ['y', 'u', 'm']
+    //   })
+    //   // .set({//for headers
+    //   //   Authorization: `Bearer ${this.tempToken}`
+    //   // })
+    //   .then( res => {
+    //     expect(res.status).to.equal(401);
+    //     console.log('!!!!@@@@@#####', res.text);
     //     done();
     //   }).catch(done);
     // });

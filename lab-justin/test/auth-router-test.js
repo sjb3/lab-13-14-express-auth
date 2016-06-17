@@ -70,23 +70,23 @@ describe('testing module auth-router', function(){
       })
       .catch(done);
     });
-//POST 401???
+//POST 401-not working
     // it('should return "unauthorized" for invalid body', (done) => {
     //   debug('test POST /api/signup');
     //   request
     //   .post(`${baseURL}/signup`)
     //   .send({
-    //     // username: 'slug',
-    //     // password: 'slug123'
+    //     username: 'slug',
+    //     password: 'slug123'
     //   })
-    //   .auth('')
+    //   // .set({Authorization:''})
     //   .then(done)
     //   .catch( err => {
     //     try{
     //       let res = err.response;
-    //       console.log('<3', res.status);
+    //       console.log('<3 <3 <3', res.status);
     //       expect(res.status).to.equal(401);
-    //       // expect(res.text).to.eql('UnauthorizedError');
+    //       expect(res.text).to.eql('UnauthorizedError');
     //       done();
     //     } catch(err) {
     //       done(err);
@@ -98,7 +98,7 @@ describe('testing module auth-router', function(){
 //GET
   describe('testing GET /api/signin', function(){
     before((done) => {
-      debug('before GET /api/signup');
+      debug('before GET /api/signin');
       authController.signup({username: 'slug', password: '1234'})
       .then(() => done())
       .catch(done);
@@ -142,13 +142,7 @@ describe('testing module auth-router', function(){
           done(err);
         }
       });
-      // .catch( err => {
-      //   let res = err.response;
-      //   console.log('HIT IT', res.status, res.text.length);
-      //
-      //   expect(res.status).to.eql(401);
-      //   done();
-      // });
+
     });
   });
 });

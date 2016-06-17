@@ -11,6 +11,7 @@ const authController = require('../controller/auth-controller');
 
 // module constants
 const authRouter = module.exports = new Router();
+debug('auth-router');
 
 authRouter.post('/signup', jsonParser, function(req, res, next){
   authController.signup(req.body)
@@ -20,7 +21,7 @@ authRouter.post('/signup', jsonParser, function(req, res, next){
 });
 
 authRouter.get('/signin', parseBasicAuth ,function(req, res, next){
-  console.log('req.auth', req.auth);
+  // console.log('req.auth', req.auth);
   authController.signin(req.auth)
   .then( token => res.send(token))
   .catch(next);
