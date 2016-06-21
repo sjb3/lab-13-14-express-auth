@@ -5,8 +5,10 @@ const debug = require('debug')('authdemo:parse-basic-auth');
 
 module.exports = function(req, res, next){
   debug('parseBasicAuth');
+
   if (! req.headers.authorization)
     return next(httpErrors('401', 'requires authorization header'));
+
   var authHeader = req.headers.authorization;
   var namePassword = authHeader.split(' ')[1];
   namePassword = new Buffer(namePassword, 'base64').toString('utf8');

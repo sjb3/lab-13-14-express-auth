@@ -38,6 +38,6 @@ groceryRouter.delete('grocery/:id', parseBearerAuth, function(req, res, next){
   debug('GET /api/grocery/:id');
   req.body.userId = req.userId;
   groceryController.deleteGroceryById(req.params.id)
-  .then(grocery => res.json(grocery))
+  .then(grocery => res.status(204).json(grocery))
   .catch(next);
 });
