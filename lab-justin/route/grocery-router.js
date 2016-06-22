@@ -18,7 +18,7 @@ groceryRouter.post('/grocery', parseBearerAuth, jsonParser, function(req, res, n
   .catch(next);
 });
 
-groceryRouter.get('grocery/:id', parseBearerAuth, function(req, res, next){
+groceryRouter.get('/grocery/:id', parseBearerAuth, function(req, res, next){
   debug('GET /api/grocery/:id');
   req.body.userId = req.userId;
   groceryController.fetchGroceryById(req.params.id)
@@ -26,7 +26,7 @@ groceryRouter.get('grocery/:id', parseBearerAuth, function(req, res, next){
   .catch(next);
 });
 
-groceryRouter.put('grocery/:id',parseBearerAuth, jsonParser, function(req, res, next){
+groceryRouter.put('/grocery/:id',parseBearerAuth, jsonParser, function(req, res, next){
   debug('PUT /api/grocery/:id');
   req.body.userId = req.userId;
   groceryController.updateGrocery(req.params.id, req.body)
@@ -34,10 +34,11 @@ groceryRouter.put('grocery/:id',parseBearerAuth, jsonParser, function(req, res, 
   .catch(next);
 });
 
-groceryRouter.delete('grocery/:id', parseBearerAuth, function(req, res, next){
+groceryRouter.delete('/grocery/:id', parseBearerAuth, function(req, res, next){
   debug('GET /api/grocery/:id');
   req.body.userId = req.userId;
-  groceryController.deleteGroceryById(req.params.id)
-  .then(grocery => res.status(204).json(grocery))
+  groceryController.deleteGrocery(req.params.id)
+  // .then(grocery => res.status(204).json(grocery))
+  .then(grocery => res.json(grocery))
   .catch(next);
 });
