@@ -23,7 +23,6 @@ exports.signup = function(reqBody){
     .then( user => user.generateToken()) // create token to send to the user
     .then( token => resolve(token)) // resolve token
     .catch( err => reject(httpErrors(400, err.message)));
-    // console.log('HERE2', user); // reject any error
   });
 };
 

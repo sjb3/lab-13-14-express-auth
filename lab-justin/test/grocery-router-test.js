@@ -73,7 +73,7 @@ describe('testing module grocery-router', function(){
           name: 'yumm bowl'
           , ingredients: ['y', 'u', 'm']
         })
-        .set({//for headers
+        .set({
           Authorization: `Bearer ${this.tempToken}`
         })
         .then( res => {
@@ -88,7 +88,7 @@ describe('testing module grocery-router', function(){
       request
       .post(`${baseURL}/grocery`)
       .send({})
-      .set({//for headers
+      .set({
         Authorization: `Bearer ${this.tempToken}`
       })
       .then(done)
@@ -216,7 +216,6 @@ describe('testing module grocery-router', function(){
           name: 'brownie', ingredients: 'fudge'
         })
         .set({
-          // Authorization: `Bearer ${this.tempToken}`
           Authorization:`Bearer ${token}`
         });
       })
@@ -226,22 +225,6 @@ describe('testing module grocery-router', function(){
       .then(() => done())
       .catch(done);
     });
-
-//DELETE 204~~not working!
-    // it('should return "no content: 204"', (done) => {
-    //   request
-    //   .del(`${baseURL}/grocery/${this.mockGrocery._id}`)
-    //   // .del(`${baseURL}/grocery/groceryId`)
-    //   // .set({Authorization: `Bearer ${this.tempToken}`})
-    //   .set({Authorization: `Bearer ${this.tempToken}`})
-    //
-    //   .auth('slug', '1234')
-    //   .then((res) => {
-    //     expect(res.status).to.eql(204);
-    //     done();
-    //   })
-    //   .catch(done);
-    // });
 
   //DELETE 404
     it('should return "not found"', (done) => {
@@ -290,7 +273,6 @@ describe('testing module grocery-router', function(){
         })
         .set({
           Authorization:`Bearer ${token}`
-          // Authorization: `Bearer ${this.tempToken}`
         });
       })
       .then(res => {
@@ -300,14 +282,11 @@ describe('testing module grocery-router', function(){
       .catch(done);
     });
 
-////////////
 //PUT 200
     it('should return 200 @ PUT', (done) => {
       debug('test PUT /api/grocery');
       request
-      // .put(`${baseURL}/grocery`)
       .put(`${baseURL}/grocery/${this.mockGrocery._id}`)
-      // .auth('slug', '1234')
       .set({
         Authorization: `Bearer ${this.tempToken}`
       })
@@ -344,15 +323,12 @@ describe('testing module grocery-router', function(){
         }
       });
     });
-//
-//   // });
-//
-// //PUT 404~~not working
+
+// //PUT 404
     it('should return 404 @ PUT', (done) => {
       debug('test PUT /api/grocery');
       request
       .put(`${baseURL}/grocery`)
-      // .auth('slug', '1234')
       .send({})
       .set({
         Authorization: `Bearer ${this.tempToken}`

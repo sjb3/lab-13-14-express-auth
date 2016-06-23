@@ -77,7 +77,6 @@ describe('testing module auth-router', function(){
       .post(`${baseURL}/signup`)
       .send({
         password: ''})
-      // .set({Authorization:''})
       .then(done)
       .catch( err => {
         try{

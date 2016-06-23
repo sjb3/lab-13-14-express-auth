@@ -17,13 +17,10 @@ authRouter.post('/signup', jsonParser, function(req, res, next){
   authController.signup(req.body)
   .then( token => res.send(token))
   .catch(next);
-  // .catch( next => res.send(401, next));
 });
 
 authRouter.get('/signin', parseBasicAuth ,function(req, res, next){
-  // console.log('req.auth', req.auth);
   authController.signin(req.auth)
   .then( token => res.send(token))
   .catch(next);
-  // .catch(next => res.send(401, next));
 });
